@@ -60,8 +60,9 @@ namespace Entrega4CAI
                 {
                     case 1:
 
-                        foreach (Curso c in of.OfertaAc) {
-                            Console.WriteLine("\nMateria: " + c.Materia.Nombre +".\n");
+                        foreach (Curso c in of.OfertaAc)
+                        {
+                            Console.WriteLine("\nMateria: " + c.Materia.Nombre + ".\n");
                             Console.WriteLine("Profesor: " + c.Profesor + ".\n");
                             Console.WriteLine("Codigo del curso: " + c.Code + ".\n");
                         }
@@ -69,32 +70,40 @@ namespace Entrega4CAI
                         break;
                     case 2:
 
-                        int cantInscriptas=0;
+                        int cantInscriptas = 0;
 
                         bool seguir = true;
 
-                        while (seguir) {
+                        while (seguir)
+                        {
 
                             Console.WriteLine("Ingrese el codigo de la materia a inscribirse:\n");
-                            validarInscripcion(Validar(Console.ReadLine()), of, juan);
+                            validarInscripcion(Validar(Console.ReadLine()), of, juan, sistemas);
                             cantInscriptas++;
                             bool next = true;
-                            while (next&& cantInscriptas<4) {
+                            while (next && cantInscriptas < 4)
+                            {
                                 Console.WriteLine("\n¿Desea insribirse en otra materia?\n");
+                                Console.WriteLine("S - Si\n");
+                                Console.WriteLine("N -No\n");
+
                                 if (ValidarYN(Console.ReadLine()))
                                 {
                                     Console.WriteLine("Ingrese el codigo de la materia a inscribirse:\n");
-                                    validarInscripcion(Validar(Console.ReadLine()), of, juan);
+                                    validarInscripcion(Validar(Console.ReadLine()), of, juan, sistemas);
                                     cantInscriptas++;
                                 }
-                                else {
+                                else
+                                {
                                     next = false;
                                     rtdo = MostrarMenu();
                                 }
                             }
-                            if (cantInscriptas == 4) {
+                            if (cantInscriptas == 4)
+                            {
                                 Console.WriteLine("Ya se incribió en 4 materias.\n");
                                 juan.HabilitadoInscripcion = false;
+                                break;
                             }
                         }
 
@@ -157,52 +166,147 @@ namespace Entrega4CAI
             return Validar(input);
         }
 
-        public static void validarInscripcion(int code, Oferta of, Alumno a)
+        public static void validarInscripcion(int code, Oferta of, Alumno a, Carrera carrera)
         {
+            bool seguir = true;
+            bool ok = false;
+            int count = 0;
+            code = ValidarMateria(code, carrera);
+            code = validarRepetida(code, a);
 
-            bool ok = false; 
-            bool disp = false;
-            int contador = 0;
-
-            while (!ok || !disp) { 
-
-            foreach (Curso c in of.OfertaAc)
+            while (seguir)
             {
-                if (c.Code == code)
+                foreach (Materia d in a.MateriasDisponibles)
                 {
-                        ok = true;
-                        int count = 0;
-                       
-
-                    foreach (Materia d in a.MateriasDisponibles)
+                    count++;
+                    if (d.Code == code)
                     {
-                     count++;
 
-                        if (d.Equals(c.Materia))
+                        Console.WriteLine("Ingrese el codigo del curso original:\n");
+                        Curso orig = ValidarCurso(Validar(Console.ReadLine()), of);
+
+                        Console.WriteLine("¿Desea cargar un curso alternativo?\n");
+                        Console.WriteLine("S - Si\n");
+                        Console.WriteLine("N -No\n");
+
+                        if (ValidarYN(Console.ReadLine()))
                         {
-                            a.MateriasInscriptas.Add(c.Materia);
-                            Console.WriteLine("Inscripcion exitosa.\n");
-                            disp = true;
-                            break;
-                        }    
-                    }
 
-                        if (count == a.MateriasDisponibles.Count && !disp) {
-                            Console.WriteLine("Todavia no puedes cursar esa materia. Intente de nuevo.\n");
-                            code = Validar(Console.ReadLine());
-                        }     
+                            Console.WriteLine("Ingrese el codigo del curso alternativo:\n");
+                            Curso alt = ValidarCurso(Validar(Console.ReadLine()), of);
+                            Inscripcion insc = new Inscripcion(orig, alt);
+                            a.MateriasInscriptas.Add(insc);
+                            ok = true;
+                            seguir = false;
+                        }
+
+                        else
+                        {
+                            Inscripcion insc = new Inscripcion(orig, null);
+                            a.MateriasInscriptas.Add(insc);
+                            ok = true;
+                            seguir = false;
+                        }
+                        break;
+                    }
+                }
+                if (count == a.MateriasDisponibles.Count && !ok)
+                {
+
+                    Console.WriteLine("Todavia no puede cursar esa materia. Intente con otra.\n");
+                    code = Validar(Console.ReadLine());
+                    validarInscripcion(code, of, a, carrera);
+
                 }
             }
-            if (contador == of.OfertaAc.Count && !ok)
-            {
-                Console.WriteLine("Codigo erroneo. Intente de nuevo.\n");
-                code = Validar(Console.ReadLine());
-            }
         }
+
+  
+
+        public static Curso ValidarCurso(int code, Oferta of)
+        {
+            int count = 0;
+            bool seguir = true;
+            Curso curso = null;
+            while (seguir)
+            {
+                foreach (Curso c in of.OfertaAc)
+                {
+                    count++;
+                    if (c.Code == code)
+                    {
+                        curso = c;
+                        seguir = false;
+                        Console.WriteLine("Curso cargado con exito.\n");
+                        return curso;
+                    }
+                }
+                if (count == of.OfertaAc.Count && curso.Equals(null))
+                {
+                    Console.WriteLine("Codigo erroneo. Intente de nuevo.\n");
+                    code = Validar(Console.ReadLine());
+                }
+            }
+            return curso;
+        }
+
+        public static int ValidarMateria(int code, Carrera carrera) {
+
+            int count = 0;
+            bool ok = false;
+
+            foreach (Materia m in carrera.Plan) {
+                count++;
+                if (m.Code == code) {
+                    ok = true;
+                    break;
+                }
+            }
+            if (count == carrera.Plan.Count && !ok) {
+                Console.WriteLine("Codigo de materia erroneo. Intente de nuevo.\n");
+                code = Validar(Console.ReadLine());
+                ValidarMateria(code, carrera);
+            }
+
+            return code;
+        }
+
+        public static int validarRepetida(int code, Alumno a) {
+
+            bool ok = false;
+            int aprob = 0;
+            int insc = 0;
+            while (!ok) {
+                foreach (Materia m in a.MateriasAprobadas) {
+                    aprob++;
+                    if (m.Code == code) {
+
+                        Console.WriteLine("Esa materia ya está aprobada. Intente con otra.\n");
+                        code = Validar(Console.ReadLine());
+                        break;
+                }
+                }
+                foreach (Inscripcion i in a.MateriasInscriptas) {
+                    insc++;
+                    if (i.Original.Materia.Code == code || i.Alternativo.Materia.Code == code) {
+
+                        Console.WriteLine("Ya está inscripto a esa materia. Intente con otra.\n");
+                        code = Validar(Console.ReadLine());
+                        break;
+                    }
+
+                }
+                if(aprob == a.MateriasAprobadas.Count && insc == a.MateriasInscriptas.Count)
+                {
+                    ok = true;
+                }
+            }
+            return code;
         }
     }
+        
 
-    class Alumno {
+        class Alumno {
 
         private String nombre;
         private String apellido;
@@ -210,7 +314,7 @@ namespace Entrega4CAI
         private int registro;
         private List<Materia> materiasAprobadas = new List<Materia>();
         private List<Materia> materiasDisponibles = new List<Materia>();  //materias que tiene disponible para inscribirse
-        private List<Materia> materiasInscriptas = new List<Materia>();
+        private List<Inscripcion> materiasInscriptas = new List<Inscripcion>();
         private bool habilitadoInscripcion;
 
         public Alumno(string nombre, string apellido, int registro, Carrera carrera)
@@ -232,7 +336,7 @@ namespace Entrega4CAI
         public int Registro { get => registro; set => registro = value; }
         public List<Materia> MateriasAprobadas { get => materiasAprobadas; set => materiasAprobadas = value; }
         public List<Materia> MateriasDisponibles { get => materiasDisponibles; set => materiasDisponibles = value; }
-        public List<Materia> MateriasInscriptas { get => materiasInscriptas; set => materiasInscriptas = value; }
+        public List<Inscripcion> MateriasInscriptas { get => materiasInscriptas; set => materiasInscriptas = value; }
         public bool HabilitadoInscripcion { get => habilitadoInscripcion; set => habilitadoInscripcion = value; }
 
         public void cargarMateriaAprobada(Materia m) {
@@ -310,5 +414,21 @@ namespace Entrega4CAI
     private List<Curso> ofertaAc = new List<Curso>();
 
         public List<Curso> OfertaAc { get => ofertaAc; set => ofertaAc = value; }
+    }
+
+    class Inscripcion {
+
+        private Curso original;
+        private Curso alternativo;
+
+        public Inscripcion(Curso original, Curso alternativo)
+        {
+            this.original = original;
+            this.alternativo = alternativo;
+
+        }
+
+        public Curso Original { get => original; set => original = value; }
+        public Curso Alternativo { get => alternativo; set => alternativo = value; }
     }
 }
