@@ -97,7 +97,10 @@ namespace Entrega4CAI
                                 {
                                     next = false;
                                     rtdo = MostrarMenu();
+                                    seguir = false;
+                                    break;                                 
                                 }
+                                break;
                             }
                             if (cantInscriptas == 4)
                             {
@@ -111,13 +114,14 @@ namespace Entrega4CAI
                         break;
                     case 3:
                         Console.WriteLine("Presione cualquier tecla para salir.\n");
-                        Console.ReadKey();
+                        run = false;
                         break;
                     default:
                         Console.WriteLine("Opción erronea. Intente de nuevo.\n");
                         rtdo = MostrarMenu();
                         break;
                 }
+                Console.ReadKey();
             }
 
 
@@ -201,7 +205,7 @@ namespace Entrega4CAI
                         }
 
                         else
-                        {
+                        {                 
                             Inscripcion insc = new Inscripcion(orig, null);
                             a.MateriasInscriptas.Add(insc);
                             ok = true;
@@ -238,12 +242,14 @@ namespace Entrega4CAI
                         curso = c;
                         seguir = false;
                         Console.WriteLine("Curso cargado con exito.\n");
+                        count = 0;
                         return curso;
                     }
                 }
-                if (count == of.OfertaAc.Count && curso.Equals(null))
+                if (count == of.OfertaAc.Count && curso == null)
                 {
                     Console.WriteLine("Codigo erroneo. Intente de nuevo.\n");
+                    count = 0;
                     code = Validar(Console.ReadLine());
                 }
             }
@@ -288,12 +294,30 @@ namespace Entrega4CAI
                 }
                 foreach (Inscripcion i in a.MateriasInscriptas) {
                     insc++;
-                    if (i.Original.Materia.Code == code || i.Alternativo.Materia.Code == code) {
 
-                        Console.WriteLine("Ya está inscripto a esa materia. Intente con otra.\n");
-                        code = Validar(Console.ReadLine());
-                        break;
+                    if (i.Alternativo != (null))
+                    {
+
+                        if (i.Original.Materia.Code == code || i.Alternativo.Materia.Code == code)
+                        {
+
+                            Console.WriteLine("Ya está inscripto a esa materia. Intente con otra.\n");
+                            code = Validar(Console.ReadLine());
+                            break;
+                        }
+
                     }
+                    else {
+
+                        if (i.Original.Materia.Code == code)
+                        {
+
+                            Console.WriteLine("Ya está inscripto a esa materia. Intente con otra.\n");
+                            code = Validar(Console.ReadLine());
+                            break;
+                        }
+                    }
+                   
 
                 }
                 if(aprob == a.MateriasAprobadas.Count && insc == a.MateriasInscriptas.Count)
