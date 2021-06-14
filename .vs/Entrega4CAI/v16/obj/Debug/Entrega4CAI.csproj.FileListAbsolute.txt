@@ -1,0 +1,14 @@
+C:\Users\Miriam\source\repos\Entrega4CAI\Entrega4CAI\bin\Debug\Entrega4CAI.exe.config
+C:\Users\Miriam\source\repos\Entrega4CAI\Entrega4CAI\bin\Debug\Entrega4CAI.exe
+C:\Users\Miriam\source\repos\Entrega4CAI\Entrega4CAI\bin\Debug\Entrega4CAI.pdb
+C:\Users\Miriam\source\repos\Entrega4CAI\Entrega4CAI\obj\Debug\Entrega4CAI.csprojAssemblyReference.cache
+C:\Users\Miriam\source\repos\Entrega4CAI\Entrega4CAI\obj\Debug\Entrega4CAI.csproj.CoreCompileInputs.cache
+C:\Users\Miriam\source\repos\Entrega4CAI\Entrega4CAI\obj\Debug\Entrega4CAI.exe
+C:\Users\Miriam\source\repos\Entrega4CAI\Entrega4CAI\obj\Debug\Entrega4CAI.pdb
+C:\Users\jjmeza\Desktop\Entrega4-master\Entrega4CAI\bin\Debug\Entrega4CAI.exe.config
+C:\Users\jjmeza\Desktop\Entrega4-master\Entrega4CAI\bin\Debug\Entrega4CAI.exe
+C:\Users\jjmeza\Desktop\Entrega4-master\Entrega4CAI\bin\Debug\Entrega4CAI.pdb
+C:\Users\jjmeza\Desktop\Entrega4-master\Entrega4CAI\obj\Debug\Entrega4CAI.csproj.CoreCompileInputs.cache
+C:\Users\jjmeza\Desktop\Entrega4-master\Entrega4CAI\obj\Debug\Entrega4CAI.exe
+C:\Users\jjmeza\Desktop\Entrega4-master\Entrega4CAI\obj\Debug\Entrega4CAI.pdb
+C:\Users\jjmeza\Desktop\Entrega4-master\Entrega4CAI\obj\Debug\Entrega4CAI.csproj.AssemblyReference.cache
