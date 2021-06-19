@@ -1,0 +1,22 @@
+247;Teoría Contable;6;0
+248;Estadística I;6;0
+249;Historia Económica y Social Argentina;4;0
+250;Microeconomía I;4;0
+252;Administración General;4;0
+251;Instituciones de Derecho Publico;4;0
+273;Instituciones de Derecho Privado;4;0
+274;Sistemas Administrativos;4;252
+275;Tecnología de la Información;6;274
+276;Cálculo Financiero;4;248
+277;Gestión y Costos;6;247
+278;Macroeconomía y Política Económic;6;250
+279;Administración Financiera;6;276
+451;Estadística para Administradores;4;275
+452;Sociología de la Organización;4;252
+453;Administración de la Producción;6;276
+454;Administración del Personal;6;452
+455;Régimen Tributario;6;278
+456;Comercialización;6;454
+457;Teoría de la Decisión;6;451
+458;Planeamiento a Largo Plazo;4;457
+459;Dirección General;6;457

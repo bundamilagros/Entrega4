@@ -1,0 +1,24 @@
+247;Teoría Contable;6;0
+248;Estadística I;6;0
+249;Historia Económica y Social Argentina;4;0
+250;Microeconomía I;4;0
+252;Administración General;4;0
+1275;Introducción a la Tecnología de la Información y las Comunicaciones;4;0
+273;Instituciones de Derecho Privado;4;1359
+274;Sistemas Administrativos;4;252
+275;Tecnología de la Información;6;274
+276;Cálculo Financiero;4;248
+278;Macroeconomía y Política Económica;6;0
+279;Administración Financiera;6;276
+351;Sistemas Contables;6;247
+353;Sistemas de Costos;4;247
+354;Derecho del Trabajo y la Seguridad Social;4;1359
+355;Auditoría;6;1352
+356;Teoría y Técnica Impositiva I;6; 1352
+357;Teoría y Técnica Impositiva II;6;356
+362;Gestión y Costos para Contadores;6;353
+1330;Contabilidad Social y Ambiental;2;1352
+1352;Contabilidad Financiera;6;353
+1359;Derecho Económico;4;0
+1360;Derecho Crediticio Bursátil e Insolvencia;4;354
+1374;Contabilidad Gubernamental y Control de Gestión;4;1352
