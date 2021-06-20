@@ -59,7 +59,7 @@ namespace Entrega4CAI
                 alumno = ValidarLogin(registro, password, alumnos);
             }
 
-            Console.WriteLine("\nInicio de sesion exitoso.\nAlumno: " + alumno.Nombre + "\n");
+            Console.WriteLine("\nInicio de sesion exitoso.\n\nAlumno: " + alumno.Nombre + "\n");
 
             int rtdo = MostrarMenu(oferta.Activa);
             Boolean run = true;
@@ -90,12 +90,13 @@ namespace Entrega4CAI
                             run = false;
                             break;
                         }
+            
 
                         int cantHabilitadas = declaracionMaterias(alumno);
 
                         int cantInscriptas = 0;
 
-                        elegirCarrera(carreras, alumno);
+                        alumno= elegirCarrera(carreras, alumno);
 
                         Carrera eleccionCarrera = alumno.Carrera;
 
@@ -164,8 +165,9 @@ namespace Entrega4CAI
             {
                 var values = line.Split(';');
                 foreach (Alumno a in alumnos) {
-                    if (a.Registro.Equals(values[0])) {
+                    if (int.Parse(values[0])==a.Registro) {
                         a.MateriasAprobadas.Add(int.Parse(values[1]));
+                        break;
                     }
                 }
             }
@@ -198,7 +200,7 @@ namespace Entrega4CAI
             return c;
         }
 
-        public static void elegirCarrera(List<Carrera> carreras, Alumno a)
+        public static Alumno elegirCarrera(List<Carrera> carreras, Alumno a)
         {
             int code = 1;
             Carrera choice = null;
@@ -224,7 +226,16 @@ namespace Entrega4CAI
                         ok = true;
                         choice = c;
                         a.Carrera = c;
-                        break;
+
+                        foreach (Materia m in a.Carrera.Plan) {
+                            if (a.MateriasAprobadas.Contains(m.RequisitosPrevio))
+                              {
+                                a.MateriasDispo.Add(m.Code);
+
+                               }
+                            }
+
+                     return a;
                     }
                 }
                 if (carreras.Count == count && choice == null ) {
@@ -234,15 +245,7 @@ namespace Entrega4CAI
               
             }
 
-            foreach (int aprobada in a.MateriasAprobadas) {
-                foreach (Materia m in a.Carrera.Plan) {
-                    if (m.RequisitosPrevio == aprobada || m.RequisitosPrevio == 0)
-                    {
-                        a.MateriasDispo.Add(m.Code);
-                    }  
-                }
-            }
- 
+            return a;
         }
 
         public static Boolean validarOpcionInscripcion(System.IO.StreamReader reader, int registro)
@@ -422,7 +425,7 @@ namespace Entrega4CAI
                     Console.WriteLine("Todavia no puede cursar esa materia. Intente con otra.\n");
                     code = Validar(Console.ReadLine());
                     validarInscripcion(code, of, a);
-
+                    count = 0;
                 }
             }
         }
