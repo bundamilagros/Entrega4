@@ -54,7 +54,7 @@ namespace Entrega4CAI
                 Console.WriteLine("\n ¡ERROR! Registro y/o contraseña incorrectos. \n");
                 Console.WriteLine("Ingrese su numero de registro: \n");
                 registro = Console.ReadLine();
-                Console.WriteLine("Ingrese su contraseña: \n");
+                Console.WriteLine("\nIngrese su contraseña: \n");
                 password = Console.ReadLine();
                 alumno = ValidarLogin(registro, password, alumnos);
             }
@@ -105,7 +105,7 @@ namespace Entrega4CAI
                         while (seguir)
                         {
 
-                            Console.WriteLine("Ingrese el codigo de la materia a inscribirse:\n");
+                            Console.WriteLine("\nIngrese el codigo de la materia a inscribirse:\n");
                             validarInscripcion(Validar(Console.ReadLine()), oferta, alumno);
                             cantInscriptas++;
                             bool next = true;
@@ -117,7 +117,7 @@ namespace Entrega4CAI
 
                                 if (ValidarYN(Console.ReadLine()))
                                 {
-                                    Console.WriteLine("Ingrese el codigo de la materia a inscribirse:\n");
+                                    Console.WriteLine("\nIngrese el codigo de la materia a inscribirse:\n");
                                     validarInscripcion(Validar(Console.ReadLine()), oferta, alumno);
                                     cantInscriptas++;
                                 }
@@ -132,13 +132,14 @@ namespace Entrega4CAI
                             }
                             if (cantInscriptas == cantHabilitadas)
                             {
-                                Console.WriteLine("Ya se incribió en "+cantHabilitadas+" materias.\n");
+                                Console.WriteLine("\nYa se incribió en "+cantHabilitadas+" materias.\n");
                                 break;
                             }
 
                         }
 
                         rtdo = MostrarMenu(oferta.Activa);
+                        Console.WriteLine("\nPresione una tecla para continuar.\n");
                         break;
 
                     case 3:
@@ -177,12 +178,19 @@ namespace Entrega4CAI
 
         public static void exportInscripciones(Alumno alumno)
         {
-            string path = @"Data\Solicitudes.txt";
+            var pathBase = Directory.GetCurrentDirectory();
+            string path = pathBase+"/Data/Solicitudes.txt";
             using (StreamWriter sw = File.AppendText(path))
             {
                 foreach (Inscripcion i in alumno.MateriasInscriptas)
                 {
-                    sw.WriteLine(alumno.Registro + "," + i.Original.Code + "," + i.Alternativo.Code + "\n");
+                    if (i.Alternativo != null)
+                    {
+                        sw.WriteLine(alumno.Registro + ";" + i.Original.Code + ";" + i.Alternativo.Code + "\n");
+                    }
+                    else {
+                        sw.WriteLine(alumno.Registro + ";" + i.Original.Code + ";\n");
+                    }
                 }
             }
 
@@ -228,18 +236,16 @@ namespace Entrega4CAI
                         a.Carrera = c;
 
                         foreach (Materia m in a.Carrera.Plan) {
-                            if (a.MateriasAprobadas.Contains(m.RequisitosPrevio))
+                            if (a.MateriasAprobadas.Contains(m.RequisitosPrevio) || m.RequisitosPrevio == 0)
                               {
                                 a.MateriasDispo.Add(m.Code);
-
                                }
                             }
-
                      return a;
                     }
                 }
                 if (carreras.Count == count && choice == null ) {
-                  Console.WriteLine("Codigo erroneo. Intente de nuevo: \n");
+                  Console.WriteLine("\nCodigo erroneo. Intente de nuevo: \n");
                   opcion = Validar(Console.ReadLine());
                 }
               
@@ -343,7 +349,7 @@ namespace Entrega4CAI
             while (!input.Equals("S") && !input.Equals("N"))
             {
                 Console.WriteLine("La opcion no es valida. Intente de nuevo.\n");
-                input = Console.ReadLine();
+                input = Console.ReadLine().ToUpper();
             }
             if (input.ToUpper().Equals("S"))
             {
@@ -388,18 +394,17 @@ namespace Entrega4CAI
                     count++;
                     if (d == code|| a.UltimasMaterias)
                     {
-
-                        Console.WriteLine("Ingrese el codigo del curso original:\n");
+                        Console.WriteLine("\nIngrese el codigo del curso original:\n");
                         Curso orig = ValidarCurso(Validar(Console.ReadLine()), of);
 
-                        Console.WriteLine("¿Desea cargar un curso alternativo?\n");
+                        Console.WriteLine("\n¿Desea cargar un curso alternativo?\n");
                         Console.WriteLine("S - Si\n");
                         Console.WriteLine("N -No\n");
 
                         if (ValidarYN(Console.ReadLine()))
                         {
 
-                            Console.WriteLine("Ingrese el codigo del curso alternativo:\n");
+                            Console.WriteLine("\nIngrese el codigo del curso alternativo:\n");
                             Curso alt = ValidarCurso(Validar(Console.ReadLine()), of);
                             Inscripcion insc = new Inscripcion(orig, alt);
                             a.MateriasInscriptas.Add(insc);
@@ -407,7 +412,6 @@ namespace Entrega4CAI
                             ok = true;
                             seguir = false;
                         }
-
                         else
                         {                 
                             Inscripcion insc = new Inscripcion(orig, null);
@@ -421,11 +425,9 @@ namespace Entrega4CAI
                 }
                 if (count == a.MateriasDispo.Count && !ok)
                 {
-
-                    Console.WriteLine("Todavia no puede cursar esa materia. Intente con otra.\n");
+                    Console.WriteLine("\nTodavia no puede cursar esa materia. Intente con otra.\n");
                     code = Validar(Console.ReadLine());
                     validarInscripcion(code, of, a);
-                    count = 0;
                 }
             }
         }
@@ -484,50 +486,40 @@ namespace Entrega4CAI
 
         public static int validarRepetida(int code, Alumno a) {
 
-            bool ok = false;
-            int aprob = 0;
+            bool ok = false;    
             int insc = 0;
             while (!ok) {
-                foreach (int m in a.MateriasAprobadas) {
-                    aprob++;
-                    if (m == code) {
 
-                        Console.WriteLine("Esa materia ya está aprobada. Intente con otra.\n");
+                if(a.MateriasAprobadas.Contains(code)) {
+                        Console.WriteLine("\nEsa materia ya está aprobada. Intente con otra.\n");
                         code = Validar(Console.ReadLine());
-                        break;
                 }
-                }
+
                 foreach (Inscripcion i in a.MateriasInscriptas) {
                     insc++;
-
                     if (i.Alternativo != (null))
                     {
-
                         if (i.Original.Code == code || i.Alternativo.Code == code)
                         {
-
-                            Console.WriteLine("Ya está inscripto a esa materia. Intente con otra.\n");
+                            Console.WriteLine("\nYa está inscripto a esa materia. Intente con otra.\n");
                             code = Validar(Console.ReadLine());
                             break;
                         }
-
                     }
                     else {
 
                         if (i.Original.Code == code)
                         {
-
-                            Console.WriteLine("Ya está inscripto a esa materia. Intente con otra.\n");
+                            Console.WriteLine("\nYa está inscripto a esa materia. Intente con otra.\n");
                             code = Validar(Console.ReadLine());
                             break;
                         }
-                    }
-                   
-
+                    }      
                 }
-                if(aprob == a.MateriasAprobadas.Count && insc == a.MateriasInscriptas.Count)
+                if(insc == a.MateriasInscriptas.Count)
                 {
                     ok = true;
+                    break;
                 }
             }
             return code;
