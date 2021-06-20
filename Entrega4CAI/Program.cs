@@ -395,7 +395,7 @@ namespace Entrega4CAI
                     if (d == code|| a.UltimasMaterias)
                     {
                         Console.WriteLine("\nIngrese el codigo del curso original:\n");
-                        Curso orig = ValidarCurso(Validar(Console.ReadLine()), of);
+                        Curso orig = ValidarCurso(Validar(Console.ReadLine()), of, code);
 
                         Console.WriteLine("\n¿Desea cargar un curso alternativo?\n");
                         Console.WriteLine("S - Si\n");
@@ -405,7 +405,7 @@ namespace Entrega4CAI
                         {
 
                             Console.WriteLine("\nIngrese el codigo del curso alternativo:\n");
-                            Curso alt = ValidarCurso(Validar(Console.ReadLine()), of);
+                            Curso alt = ValidarCurso(Validar(Console.ReadLine()), of,code);
                             Inscripcion insc = new Inscripcion(orig, alt);
                             a.MateriasInscriptas.Add(insc);
                             exportInscripciones(a);
@@ -434,7 +434,7 @@ namespace Entrega4CAI
 
   
 
-        public static Curso ValidarCurso(int code, Oferta of)
+        public static Curso ValidarCurso(int code, Oferta of, int code_materia)
         {
             int count = 0;
             bool seguir = true;
@@ -444,18 +444,18 @@ namespace Entrega4CAI
                 foreach (Curso c in of.OfertaAc)
                 {
                     count++;
-                    if (c.Code == code)
+                    if (c.Code == code && c.Code_materia == code_materia)
                     {
                         curso = c;
                         seguir = false;
-                        Console.WriteLine("Curso cargado con exito.\n");
+                        Console.WriteLine("\nCurso cargado con exito.\n");
                         count = 0;
                         return curso;
                     }
                 }
                 if (count == of.OfertaAc.Count && curso == null)
                 {
-                    Console.WriteLine("Codigo erroneo. Intente de nuevo.\n");
+                    Console.WriteLine("\nCodigo erroneo. Intente de nuevo.\n");
                     count = 0;
                     code = Validar(Console.ReadLine());
                 }
