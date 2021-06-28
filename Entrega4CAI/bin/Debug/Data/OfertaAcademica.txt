@@ -1,0 +1,20 @@
+200;Administración General;252;Horacio Gutierrez;Martinez;09
+201;Administración General;252;Gimena Hernandez;Perez;14
+300;Calculo Financiero;276;Tomas Gomez;Gomez;07
+301;Calculo Financiero;276;Florencia Torres;Gomez;21
+302;Calculo Financiero;276;Rosa Casero;Lopez;13
+400;Sistemas Administrativos;274;Juan Pablo Tarres;Juarez;11
+401;Sistemas Administrativos;274;Ivan Rosas;Hernandez;21
+402;Sistemas Administrativos;274;Paola Flores;Juarez;19
+009;Instituciones del Derecho Privado;273;Carmen Blanco;Perez;21
+008;Instituciones del Derecho Privado;273;German Benitez;Perez;09
+007;Instituciones del Derecho Privado;273;Ursula Suarez;Olmedo;17
+1700;Direccion General;459;Ignacio Caceres;Mendez;12
+1701;Direccion General;459;Hernan Fernandez;Rodriguez;19
+1703;Direccion General;459;Luana Mendez;Mendez;13
+1020;Teoría de los Lenguajes y Algoritmos;1652;Blanca Fernandez;Del Campo;15
+1021;Teoría de los Lenguajes y Algoritmos;1652;Valentin Chavez;Nereira;07
+1022;Teoría de los Lenguajes y Algoritmos;1652;Nicolas Taño;Del Campo;19
+2001;Construcción de Aplicaciones Informáticas;1654;Maria del Carmen Lopez;Hernandez;19
+2002;Construcción de Aplicaciones Informáticas;1654;Tomas Florentino;Martinez;11
+2003;Construcción de Aplicaciones Informáticas;1654;Susana Paredes;Chavez;19
