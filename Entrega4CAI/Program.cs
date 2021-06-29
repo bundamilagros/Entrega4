@@ -82,8 +82,7 @@ namespace Entrega4CAI
                         Console.WriteLine("\nPresione una tecla para continuar.\n");
                         break;
                     case 2:
-
-                        reader = new System.IO.StreamReader(File.OpenRead(@pathBase + "/Data/Inscripciones.txt"));
+                        
                         if (!validarOpcionInscripcion(reader, alumno.Registro)) {
 
                             Console.WriteLine("\nYa se registraron incripciones para este alumno.\n Presione cualquier tecla para salir.\n");
@@ -123,8 +122,7 @@ namespace Entrega4CAI
                                 }
                                 else
                                 {
-                                    next = false;
-                                    rtdo = MostrarMenu(oferta.Activa);
+                                    next = false;                               
                                     seguir = false;
                                     break;
                                 }
@@ -172,6 +170,7 @@ namespace Entrega4CAI
                     }
                 }
             }
+            reader.Close();
             return alumnos;
 
         }
