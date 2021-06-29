@@ -632,16 +632,7 @@ namespace Entrega4CAI
         public int Code { get => code; set => code = value; }
     }
 
-    class Profesor {
 
-        private int dni;
-        private String nombre;
-        private List<Curso> materias;
-
-        public List<Curso> Materias { get => materias; set => materias = value; }
-        public string Nombre { get => nombre; set => nombre = value; }
-        public int Dni { get => dni; set => dni = value; }
-    }
 
 
     class Oferta {
