@@ -179,17 +179,17 @@ namespace Entrega4CAI
         public static void exportInscripciones(Alumno alumno)
         {
             var pathBase = Directory.GetCurrentDirectory();
-            string path = pathBase+"/Data/Solicitudes.txt";
+            string path = pathBase+"/Data/Inscripciones.txt";
             using (StreamWriter sw = File.AppendText(path))
             {
                 foreach (Inscripcion i in alumno.MateriasInscriptas)
                 {
                     if (i.Alternativo != null)
                     {
-                        sw.WriteLine(alumno.Registro + ";" + i.Original.Code + ";" + i.Alternativo.Code + "\n");
+                        sw.WriteLine(alumno.Registro + ";" + i.Original.Code + ";" + i.Alternativo.Code);
                     }
                     else {
-                        sw.WriteLine(alumno.Registro + ";" + i.Original.Code + ";\n");
+                        sw.WriteLine(alumno.Registro + ";" + i.Original.Code);
                     }
                 }
             }
@@ -203,7 +203,9 @@ namespace Entrega4CAI
             while ((line = reader.ReadLine()) != null)
             {
                 var values = line.Split(';');
-                c.Plan.Add(new Materia(int.Parse(values[0]), values[1], int.Parse(values[2]), int.Parse(values[3])));
+                int[] prequisitos = {(int.Parse(values[3])), (int.Parse(values[4])), (int.Parse(values[5])), (int.Parse(values[6])), (int.Parse(values[7])) };
+             
+                c.Plan.Add(new Materia(int.Parse(values[0]), values[1], int.Parse(values[2]), prequisitos));
             }
             return c;
         }
@@ -236,11 +238,18 @@ namespace Entrega4CAI
                         a.Carrera = c;
 
                         foreach (Materia m in a.Carrera.Plan) {
-                            if (a.MateriasAprobadas.Contains(m.RequisitosPrevio) || m.RequisitosPrevio == 0)
+                            int contador = 0;
+                            for (int i = 0; i < 5; i++) {
+                                
+                            if (a.MateriasAprobadas.Contains(m.RequisitosPrevio[i]) || m.RequisitosPrevio[i] == 0)
                               {
-                                a.MateriasDispo.Add(m.Code);
+                                    contador++;                              
                                }
                             }
+                            if (contador == 5) {
+                            a.MateriasDispo.Add(m.Code);
+                            }
+                        }
                      return a;
                     }
                 }
@@ -562,9 +571,9 @@ namespace Entrega4CAI
         private int code;
         private List<Materia> materiasSiguientes = new List<Materia>();
         private int cargaHoraria;
-        private int code_correlativa;
+        private int[] code_correlativa = new int[5];
 
-        public Materia(int code, String nombre, int carga, int code_correlativa)
+        public Materia(int code, String nombre, int carga, int[] code_correlativa)
         {
             this.code = code;
             this.nombre = nombre;
@@ -575,7 +584,7 @@ namespace Entrega4CAI
         public string Nombre { get => nombre; set => nombre = value; }
         public int Code { get => code; set => code = value; }
         public List<Materia> MateriasSiguientes { get => materiasSiguientes; set => materiasSiguientes = value; }
-        public int RequisitosPrevio { get => code_correlativa; set => code_correlativa = value; }
+        public int[] RequisitosPrevio { get => code_correlativa; set => code_correlativa = value; }
     }
 
     class Curso {
