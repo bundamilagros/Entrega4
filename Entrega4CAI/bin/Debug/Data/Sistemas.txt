@@ -1,27 +1,27 @@
-274;Sistemas Administrativos;4;252
-276;Cálculo Financiero;4;248
-277;Gestión y Costos;6;247
-278;Macroeconomía y Política Económica;6;0
-279;Administración Financiera;6;276
-452;Sociología de la Organización;4;252
-457;Teoría de la Decisión;6;277
-651;Lógica;4;1275
-655;Tecnología de las Comunicaciones;4;1653
-657;Sistemas de Datos;4;651
-658;Metodología de los Sistemas de Información;6;1275
-740;Redes Informáticas;4;655
-1601;Ingeniería en Software;4;1275
-1603;Derecho Informático I;4;0
-1604;Derecho Informático II;6;1603
-1652;Teoría de los Lenguajes y Algoritmos;4;651
-1653;Tecnología de los Computadores y Sistemas Operativos;6;1275
-1654;Construcción de Aplicaciones Informáticas;4;1652
-1659;Auditoría y Seguridad de los Sistemas de Información;6;658
-1660;Actuación Profesional del Licenciado en Sistemas de las Organizaciones;6;1654
-1799;Gestión de Recursos Informáticos;4;1659
-247;Teoría Contable;6;0
-248;Estadística I;6;0
-249;Historia Económica y Social Argentina;4;0
-250;Microeconomía I;4;0
-252;Administración General;4;0
-1275;Introducción a la Tecnología de la Información y las Comunicaciones;4;0
+274;Sistemas Administrativos;4;252;0;0;0;0
+276;Cálculo Financiero;4;248;0;0;0;0
+277;Gestión y Costos;6;247;0;0;0;0
+278;Macroeconomía y Política Económica;6;0;0;0;0;0
+279;Administración Financiera;6;276;0;0;0;0
+452;Sociología de la Organización;4;252;0;0;0;0
+457;Teoría de la Decisión;6;277;0;0;0;0
+651;Lógica;4;1275;0;0;0;0
+655;Tecnología de las Comunicaciones;4;1653;0;0;0;0
+657;Sistemas de Datos;4;651;0;0;0;0
+658;Metodología de los Sistemas de Información;6;1275;0;0;0;0
+740;Redes Informáticas;4;655;0;0;0;0
+1601;Ingeniería en Software;4;1275;0;0;0;0
+1603;Derecho Informático I;4;0;0;0;0;0
+1604;Derecho Informático II;6;1603;0;0;0;0
+1652;Teoría de los Lenguajes y Algoritmos;4;651;0;0;0;0
+1653;Tecnología de los Computadores y Sistemas Operativos;6;1275;0;0;0;0
+1654;Construcción de Aplicaciones Informáticas;4;1652;0;0;0;0
+1659;Auditoría y Seguridad de los Sistemas de Información;6;658;0;0;0;0
+1660;Actuación Profesional del Licenciado en Sistemas de las Organizaciones;6;1654;0;0;0;0
+1799;Gestión de Recursos Informáticos;4;1659;0;0;0;0
+247;Teoría Contable;6;0;0;0;0;0
+248;Estadística I;6;0;0;0;0;0
+249;Historia Económica y Social Argentina;4;0;0;0;0;0
+250;Microeconomía I;4;0;0;0;0;0
+252;Administración General;4;0;0;0;0;0
+1275;Introducción a la Tecnología de la Información y las Comunicaciones;4;0;0;0;0;0

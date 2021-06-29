@@ -1,25 +1,25 @@
-247;Teoría Contable;6;0
-248;Estadística I;6;0
-249;Historia Económica y Social Argentina;4;0
-250;Microeconomía I;4;0
-252;Administración General;4;0
-1275;Introducción a la Tecnología de la Información y las Comunicaciones;4;0
-273;Instituciones del Derecho Privado;4;0
-274;Sistemas Administrativos;4;252
-275;Tecnología de la Información;6;274
-276;Cálculo Financiero;4;248
-277;Gestión y Costos;6;247
-278;Macroeconomía y Política Económica;6;250
-279;Administración Financiera;6;252
-284;Análisis Matemático II;6;245
-285;Estadística II;6;284
-288;Matemática para Economistas;6;284
-552;Dinero, Crédito y Bancos;6;288
-751;Estadística Actuarial;4;288
-752;Análisis Numérico;4;288
-753;Biometría Actuarial;6;752
-754;Teoría Actuarial de los Seguros Personales;4;753
-755;Teoría Actuarial de los Seguros Patrimoniales;4;752
-756;Teoría Actuarial de los Fondos y Planes de Jubilaciones, Pensiones y Salud;6;754
-757;Teoría de Equilibrio Actuarial;4;755
-758;Bases Actuariales de las Inversiones y Financiaciones;4;751
+247;Teoría Contable;6;0;0;0;0;0
+248;Estadística I;6;0;0;0;0;0
+249;Historia Económica y Social Argentina;4;0;0;0;0;0
+250;Microeconomía I;4;0;0;0;0;0
+252;Administración General;4;0;0;0;0;0
+1275;Introducción a la Tecnología de la Información y las Comunicaciones;4;0;0;0;0;0
+273;Instituciones del Derecho Privado;4;0;0;0;0;0
+274;Sistemas Administrativos;4;252;0;0;0;0
+275;Tecnología de la Información;6;274;0;0;0;0
+276;Cálculo Financiero;4;248;0;0;0;0
+277;Gestión y Costos;6;247;0;0;0;0
+278;Macroeconomía y Política Económica;6;250;0;0;0;0
+279;Administración Financiera;6;252;0;0;0;0
+284;Análisis Matemático II;6;245;0;0;0;0
+285;Estadística II;6;284;0;0;0;0
+288;Matemática para Economistas;6;284;0;0;0;0
+552;Dinero, Crédito y Bancos;6;288;0;0;0;0
+751;Estadística Actuarial;4;288;0;0;0;0
+752;Análisis Numérico;4;288;0;0;0;0
+753;Biometría Actuarial;6;752;0;0;0;0
+754;Teoría Actuarial de los Seguros Personales;4;753;0;0;0;0
+755;Teoría Actuarial de los Seguros Patrimoniales;4;752;0;0;0;0
+756;Teoría Actuarial de los Fondos y Planes de Jubilaciones, Pensiones y Salud;6;754;0;0;0;0
+757;Teoría de Equilibrio Actuarial;4;755;0;0;0;0
+758;Bases Actuariales de las Inversiones y Financiaciones;4;751;0;0;0;0
